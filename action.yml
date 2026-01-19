@@ -41,6 +41,10 @@ inputs:
     description: Report granular build warning and error information
     required: false
     default: ON
+  build-type:
+    description: Build config type
+    required: false
+    default: Debug
 outputs:
   build-errors:
     description: Store the number of build errors detected
@@ -59,7 +63,7 @@ runs:
         CTEST_USE_INSTRUMENTATION: 1
         CTEST_USE_VERBOSE_INSTRUMENTATION: 1
         CTEST_EXPERIMENTAL_INSTRUMENTATION: ec7aa2dc-b87f-45a3-8022-fe01c5f59984
-      shell: ctest --build-config Debug --verbose --script {0}
+      shell: ctest --build-config ${{ inputs.build-type }} --verbose --script {0}
       run: |
         cmake_minimum_required(VERSION 3.14)
 
