@@ -78,6 +78,8 @@ runs:
         set(CTEST_MEMORYCHECK_TYPE "${{ inputs.memorycheck-type }}")
         set(CTEST_USE_LAUNCHERS "${{ inputs.use-launchers }}")
 
+        ctest_read_custom_files("${CTEST_SOURCE_DIRECTORY}")
+
         cmake_host_system_information(RESULT NPROC QUERY NUMBER_OF_LOGICAL_CORES)
 
         ctest_start("Experimental" GROUP "${{ github.event_name }}")
